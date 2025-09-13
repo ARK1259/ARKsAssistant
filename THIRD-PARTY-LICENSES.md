@@ -69,4 +69,9 @@ This project utilizes the following third-party Python packages. Each package is
     * **License**: [MIT License](https://opensource.org/licenses/MIT)
     * **Source**: [PyPI](https://pypi.org/project/word2number/1.1/)
 
-Let me know if you need further assistance or modifications to this document!
+### Optional Model Data
+
+14. **vosk-model-en-us-0.22-lgraph**
+    * License: Apache 2.0
+    * Source: [https://alphacephei.com/vosk/models](https://alphacephei.com/vosk/models)
+    * Note: This model is not included in the repository(Only in releases). Users should download it separately.
