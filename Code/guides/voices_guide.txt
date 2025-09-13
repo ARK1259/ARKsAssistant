@@ -1,0 +1,5 @@
+ARKsAssistant on default uses Microsof Edge Natural Voices Online - Emma
+As of 0.0.06
+it is required to install https://github.com/gexgd0419/NaturalVoiceSAPIAdapter to access Emma's voice
+OTHERWISE!!
+the voice will default to microsoft Zira or David.

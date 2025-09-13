@@ -7,7 +7,7 @@ pycaw==20240210
 pygame==2.6.1
 pyserial==3.5
 pyttsx3==2.98
-Requests==2.32.5
+Requests==2.32.3
 sounddevice==0.5.2
 urwid==3.0.2
 vosk==0.3.45

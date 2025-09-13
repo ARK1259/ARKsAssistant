@@ -1,0 +1,2 @@
+This menu is for adding/deleting some values required for the assistant to function properly
+changing these values can change or discontinue your assistants functions, therefore take caution in editing them.
