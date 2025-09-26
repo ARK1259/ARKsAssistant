@@ -94,7 +94,7 @@ Again thank you so much for partaking in the development of ARKsAssistant!
 
 ## Roadmap
 - [X] Finish the Readme
-- [ ] Publish the release
+- [X] Publish the release
 - [ ] Fix the requirement for vosk model to be in vosken1 folder on first launch with asking the user for its location
 - [ ] Clean up the .py files
 - [ ] Find Donation methods
