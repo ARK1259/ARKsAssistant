@@ -77,7 +77,7 @@ It is recommended to use vosk-model-en-us-0.22-lgraph as the model for ARKsAssis
 #### You are now able to run "./Code/maincode.py" or [Launch.bat](Launch.bat) to run the assistant!
 
 ## Guides
-Guides have benn included in the repository as well as the wiki on github.
+Guides have been included in the repository as well as the wiki on github.
 You may access the [guides](Code/guides) in the debug menu of their respective section.
 
 **These files and the wiki are currently under progress and will be finished as soon as possible so stay tuned.**
