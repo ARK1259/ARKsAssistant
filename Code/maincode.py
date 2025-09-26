@@ -186,101 +186,103 @@ def handle_commands():
                 print("Invalid Command!")
         return
 
-    # --- Vosk mode ---
-    if use_wake_word:
-        print(f"🎤 Awaiting Wake Word... ({wake_word})")
-        wake_active = False
     else:
-        print("🎤 Awaiting voice command...")
+        # --- Vosk mode ---
+        if use_wake_word:
+            print(f"🎤 Awaiting Wake Word... ({wake_word})")
+            wake_active = False
+        else:
+            print("🎤 Awaiting voice command...")
 
-    with sd.RawInputStream(
-        device=audio_device_info("inputdevice"),
-        samplerate=audio_device_info("inputsamplerate"),
-        blocksize=8000,
-        dtype="int16",
-        channels=1,
-        callback=callback
-    ):
-        while True:
-            # --- Timeout check ---
-            if use_wake_word and wake_active:
-                if time.time() - wake_start_time > wake_timeout:
-                    play_audio(systemsound="click", wait=False)
-                    print("⏲️ Wake word timeout, returning to sleep mode...")
-                    wake_active = False
+        with sd.RawInputStream(
+            device=audio_device_info("inputdevice"),
+            samplerate=audio_device_info("inputsamplerate"),
+            blocksize=8000,
+            dtype="int16",
+            channels=1,
+            callback=callback
+        ):
+            while True:
+                # --- Timeout check ---
+                if use_wake_word and wake_active:
+                    if time.time() - wake_start_time > wake_timeout:
+                        play_audio(systemsound="click", wait=False)
+                        print("⏲️ Wake word timeout, returning to sleep mode...")
+                        wake_active = False
+                        continue
+
+                # Get the latest audio chunk only
+                try:
+                    data = q.get_nowait()
+                    while not q.empty():  # keep discarding until last item
+                        data = q.get_nowait()
+                except queue.Empty:
                     continue
 
-            # Get the latest audio chunk only
-            try:
-                data = q.get_nowait()
-                while not q.empty():  # keep discarding until last item
-                    data = q.get_nowait()
-            except queue.Empty:
-                continue
+                if not recognizer_en.AcceptWaveform(data):
+                    continue  # skip partials
 
-            if not recognizer_en.AcceptWaveform(data):
-                continue  # skip partials
+                result = json.loads(recognizer_en.Result())
+                text = re.sub(r"[^\w\s]", "", result.get("text", "").strip().lower())
+                if not text:
+                    continue
 
-            result = json.loads(recognizer_en.Result())
-            text = re.sub(r"[^\w\s]", "", result.get("text", "").strip().lower())
-            if not text:
-                continue
+                if printall:
+                    print(text)
 
-            if printall:
-                print(text)
+                # --- Wake word check ---
+                if use_wake_word and not wake_active:
+                    if wake_word == text:  # strict match only
+                        play_audio(systemsound="notification", wait=False)
+                        print("Wake word detected, now listening for commands...")
+                        wake_active = True
+                        wake_start_time = time.time()
+                    continue
 
-            # --- Wake word check ---
-            if use_wake_word and not wake_active:
-                if wake_word == text:  # strict match only
-                    play_audio(systemsound="notification", wait=False)
-                    print("Wake word detected, now listening for commands...")
-                    wake_active = True
-                    wake_start_time = time.time()
-                continue
+                # --- Skip short/filler words ---
+                words = text.split()
+                if (
+                    len(words) < minwords
+                    or len(words) > maxwords
+                    or all(w in filler_words for w in words)
+                ):
+                    continue
 
-            # --- Skip short/filler words ---
-            words = text.split()
-            if (
-                len(words) < minwords
-                or len(words) > maxwords
-                or all(w in filler_words for w in words)
-            ):
-                continue
+                if printinput:
+                    print(text)
 
-            if printinput:
-                print(text)
-
-            # --- Fuzzy matching for commands only ---
-            best_score, matched_command = max(
-                (
-                    (difflib.SequenceMatcher(None, text, cmd).ratio(), cmd)
-                    for cmd in commands_dict.keys()
-                ),
-                key=lambda x: x[0],
-                default=(0.0, None)
-            )
-
-            if matched_command and best_score >= strictness:
-                print(f"[Command] -> {matched_command} (score={best_score:.2f})")
-                response = commands_dict[matched_command]
-                if response:
-                    speak(response)
-
-                perform_action(
-                    matched_command,
-                    confirm_required=matched_command in sensitive_commands,
-                    network_required=matched_command in online_commands,
-                    notification_required=matched_command in notify_commands
+                # --- Fuzzy matching for commands only ---
+                best_score, matched_command = max(
+                    (
+                        (difflib.SequenceMatcher(None, text, cmd).ratio(), cmd)
+                        for cmd in commands_dict.keys()
+                    ),
+                    key=lambda x: x[0],
+                    default=(0.0, None)
                 )
 
-                last_trigger_time = time.time()
+                if matched_command and best_score >= strictness:
+                    print(f"[Command] -> {matched_command} (score={best_score:.2f})")
+                    response = commands_dict[matched_command]
+                    if response:
+                        speak(response)
 
-                # Clear audio queue efficiently
-                with q.mutex:
-                    q.queue.clear()
+                    perform_action(
+                        matched_command,
+                        confirm_required=matched_command in sensitive_commands,
+                        network_required=matched_command in online_commands,
+                        notification_required=matched_command in notify_commands
+                    )
 
-                if use_wake_word:
-                    wake_active = False
+                    last_trigger_time = time.time()
+
+                    # Clear audio queue efficiently
+                    with q.mutex:
+                        q.queue.clear()
+
+                    if use_wake_word:
+                        wake_active = False
+                        break
                     break
 
 # Try running the code

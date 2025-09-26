@@ -151,6 +151,9 @@ def perform_action(command, confirm_required=False, network_required=False, noti
     elif command == "previous media track":
         command_functions.input_keyboard("previous track")
 
+    elif command == "set system volume":
+        command_functions.set_system_volume()
+
     elif command == "current crypto price":
         command_functions.get_crypto_price()
 
