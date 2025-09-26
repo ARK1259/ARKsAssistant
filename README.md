@@ -77,7 +77,23 @@ It is recommended to use vosk-model-en-us-0.22-lgraph as the model for ARKsAssis
 #### You are now able to run "./Code/maincode.py" or [Launch.bat](Launch.bat) to run the assistant!
 
 ## Guides
-...
+Guides have benn included in the repository as well as the wiki on github.
+You may access the [guides](Code/guides) in the debug menu of their respective section.
+
+**These files and the wiki are currently under progress and will be finished as soon as possible so stay tuned.**
+
+## A Word from the Developer
+Thank you for considering to use ARKsAssistant! This program is made by the one single person that I am in the few spare moments that I have. It is a fully free software, so not only I have yet to gain any profit, I have most likely lost some. You are the only reason for me to keep on working on this project as I myself am quite proud of its current state and see no reason to move forward with it.
+Every watch, every star, every follow I get on this repo means a world wants to see a bright future for this assistant. And who am I to deny you that? I have brought this software to this world and I will continue working on it until its purely perfect.
+
+If you want to help me in taking this journey another step forward, Share your ideas and tell me if there is anything you are willing to help with. I have published this program on github in hopes that people will lend their aid in improving it.
+Again thank you so much for partaking in the development of ARKsAssistant!
+
+-ARK1259
 
 ## Roadmap
-- [ ] Finish the Readme
+- [X] Finish the Readme
+- [ ] Publish the release
+- [ ] Fix the requirement for vosk model to be in vosken1 folder on first launch with asking the user for its location
+- [ ] Clean up the .py files
+- [ ] Find Donation methods
