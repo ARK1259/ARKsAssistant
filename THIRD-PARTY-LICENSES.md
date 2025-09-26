@@ -69,6 +69,11 @@ This project utilizes the following third-party Python packages. Each package is
     * **License**: [MIT License](https://opensource.org/licenses/MIT)
     * **Source**: [PyPI](https://pypi.org/project/word2number/1.1/)
 
+14. **pyinstaller==5.13.1**
+
+    * **License**: [GPL License](https://www.gnu.org/licenses/gpl-3.0.en.html)
+    * **Source**: [PyPI](https://pypi.org/project/pyinstaller/5.13.1/)
+
 ### Optional Model Data
 
 14. **vosk-model-en-us-0.22-lgraph**
