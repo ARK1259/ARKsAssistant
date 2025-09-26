@@ -87,6 +87,7 @@ Thank you for considering to use ARKsAssistant! This program is made by the one 
 Every watch, every star, every follow I get on this repo means a world wants to see a bright future for this assistant. And who am I to deny you that? I have brought this software to this world and I will continue working on it until its purely perfect.
 
 If you want to help me in taking this journey another step forward, Share your ideas and tell me if there is anything you are willing to help with. I have published this program on github in hopes that people will lend their aid in improving it.
+
 Again thank you so much for partaking in the development of ARKsAssistant!
 
 -ARK1259
