@@ -178,9 +178,6 @@ def perform_action(command, confirm_required=False, network_required=False, noti
     elif command == "play audio file":
         command_functions.play_audio(True, wait=False, volume=0.75)
 
-    elif command == "play funny music":
-        command_functions.play_audio("C:/Users/ARK1259/Music/NCS/Gift.mp3", wait=False, volume=0.30)
-
     elif command == "lights on":
         command_functions.arduino_message("9:100")
 
