@@ -83,7 +83,7 @@ You may access the [guides](Code/guides) in the debug menu of their respective s
 **These files and the wiki are currently under progress and will be finished as soon as possible so stay tuned.**
 
 ## A Word from the Developer
-Thank you for considering to use ARKsAssistant! This program is made by the one single person that I am in the few spare moments that I have. It is a fully free software, so not only I have yet to gain any profit, I have most likely lost some. You are the only reason for me to keep on working on this project as I myself am quite proud of its current state and see no reason to move forward with it.
+Thank you for considering to use ARKsAssistant! This program is made by the one single person that I am in the few spare moments that I have. It is a fully free software, so not only I have yet to gain any profit, I have most likely lost some. Your support is really motivating in the betterment of this project and I am looking forward to hear your thoughts.
 Every watch, every star, every follow I get on this repo means a world wants to see a bright future for this assistant. And who am I to deny you that? I have brought this software to this world and I will continue working on it until its purely perfect.
 
 If you want to help me in taking this journey another step forward, Share your ideas and tell me if there is anything you are willing to help with. I have published this program on github in hopes that people will lend their aid in improving it.
