@@ -1,0 +1,790 @@
+{
+    "INTENT_DEFINITIONS": {
+        "check_weather": {
+            "keywords": {
+                "additional":{
+                    "weather": {
+                        "translation": [
+                            "weather",
+                            "forecast",
+                            "temperature"
+                        ]
+                    }
+                }
+            },
+            "required_entities": [
+                [
+                    "city"
+                ]
+            ],
+            "prompts": {
+                "SILENCE": false
+            },
+            "online": true,
+            "notify": ""
+        },
+        "check_crypto": {
+            "keywords": {
+                "source": "entity_values",
+                "entity": "crypto",
+                "additional": {
+                    "trending":{
+                        "condition": [
+                            [
+                                "crypto_action_trending"
+                            ]
+                        ],
+                        "translation": [
+                            "coin",
+                            "crypto"
+                        ]
+                    }
+                }
+            },
+            "required_entities": [
+                [
+                    "crypto_action_price",
+                    "status_controls"
+                ]
+            ],
+            "prompts": {
+                "SILENCE": true
+            },
+            "online": true
+        },
+        "arduino_command": {
+            "keywords": {
+                "additional": {
+                    "lights": {
+                        "condition": [
+                            [
+                                "state_on",
+                                "terminate_controls"
+                            ]
+                        ],
+                        "prompts": {
+                            "boom": null,
+                            "yo, sure bro": "bro",
+                            "USE_GENERAL": true,
+                            "SILENCE": false
+                        },
+                        "translation": [
+                            "light",
+                            "lights"
+                        ]
+                    },
+                    "humidifier": {
+                        "condition": [
+                            [
+                                "state_on",
+                                "state_auto",
+                                "terminate_controls"
+                            ]
+                        ]
+                    },
+                    "set_humidity": {
+                        "condition": [
+                            [
+                                "minimum_values",
+                                "set_controls",
+                                "number"
+                            ],
+                            [
+                                "maximum_values",
+                                "set_controls",
+                                "number"
+                            ]
+                        ],
+                        "translation": [
+                            "humidity"
+                        ]
+                    },
+                    "humidity": {
+                        "condition":[
+                            [
+                                "inquire_commands"
+                            ]
+                        ]
+                    }
+                }
+            },
+            "prompts": {
+                "SILENCE": true
+            },
+            "notify": false
+        },
+        "media_control": {
+            "keywords": {
+                "additional": {
+                    "music": null,
+                    "media": null,
+                    "system": {
+                        "condition": [
+                            [
+                                "volume_controls",
+                                "set_controls"
+                            ]
+                        ],
+                        "translation": [
+                            "system", "computer", "windows"
+                        ]
+                    },
+                    "video": {
+                        "condition": [
+                            [
+                                "video_files"
+                            ],
+                            [
+                               "continue_controls" 
+                            ]
+                        ]
+                    },
+                    "audio": {
+                        "condition": [
+                            [
+                                "audio_files"
+                            ],
+                            [
+                               "continue_controls" 
+                            ]
+                        ]
+                    }
+                }
+            },
+            "required_entities": [
+                [
+                    "continue_controls",
+                    "pause_controls",
+                    "toggle_controls",
+                    "next_controls",
+                    "previous_controls",
+                    "volume_controls"
+                ]
+            ],
+            "prompts":{
+                "DISABLE": true
+            },
+            "notify": true
+        },
+        "system_control": {
+            "keywords": {
+                "additional": {
+                    "system": null,
+                    "computer": null,
+                    "windows": null
+                }
+            },
+            "required_entities": [
+                [
+                    "terminate_controls",
+                    "reboot_controls",
+                    "system_state_sleep",
+                    "system_state_hibernate",
+                    "system_state_lock",
+                    "status_controls"
+                ]
+            ],
+            "prompts": {
+                "SILENCE": true
+            },
+            "notify": true
+        },
+        "time_management": {
+            "keywords": {
+                "additional": {
+                    "time": {
+                        "translation": "time",
+                        "condition": [
+                            [
+                                "inquire_commands"
+                            ]
+                        ]
+                    },
+                    "timer": {
+                        "translation": [
+                            "timer",
+                            "hit me up",
+                            "remind"
+                        ],
+                        "condition": [
+                            [
+                                "number"
+                            ],
+                            [
+                                "time_unit"
+                            ]
+                        ],
+                        "prompts":{
+                            "SILENCE": false   
+                        }
+                    }
+                }
+            },
+            "prompts":{
+                "DISABLE": true
+            },
+            "notify": true
+        },
+        "program_control": {
+            "keywords": {
+                "additional": {
+                    "self": {
+                        "condition": [
+                            [
+                                "terminate_controls",
+                                "reboot_controls"
+                            ]
+                        ],
+                        "translation": [
+                            "your program",
+                            "yourself"
+                        ]
+                    },
+                    "core": {
+                        "condition": [
+                            [
+                                "reboot_controls"
+                            ]
+                        ],
+                        "translation": [
+                            "your core",
+                            "handle commands",
+                            "main"
+                        ]
+                    },
+                    "self_standby": {
+                        "condition": [
+                            [
+                                "standby_controls"
+                            ]
+                        ],
+                        "translation": [
+                            "your program",
+                            "yourself"
+                        ]
+                    },
+                    "open": {
+                        "condition": [
+                            [
+                                "app_names"
+                            ]
+                        ],
+                        "translation": [
+                            "run",
+                            "open",
+                            "launch",
+                            "start"
+                        ]
+                    },
+                    "reboot": {
+                        "condition": [
+                            [
+                                "app_names"
+                            ]
+                        ],
+                        "translation": [
+                            "reboot",
+                            "restart",
+                            "relaunch"
+                        ]
+                    },
+                    "close": {
+                        "condition": [
+                            [
+                                "app_names"
+                            ]
+                        ],
+                        "translation": [
+                            "stop",
+                            "terminate",
+                            "close"
+                        ]
+                    }
+                }
+            },
+            "prompts": {
+                "SILENCE": false
+            }
+        },
+        "keyboard_action": {
+            "keywords": {
+                "additional":{
+                    "screenshot": {
+                        "translation": [
+                            "screenshot",
+                            "snapshot",
+                            "picture"
+                        ],
+                        "condition": [
+                            [
+                                "take_controls"
+                            ]
+                        ]
+                    },
+                    "save": {
+                        "translation": [
+                            "save"
+                        ],
+                        "condition": [
+                            [
+                                "input_commands"
+                            ]
+                        ]
+                    },
+                    "space": {
+                        "condition": [
+                            [
+                                "input_commands"
+                            ]
+                        ]
+                    },
+                    "enter": {
+                        "condition": [
+                            [
+                                "input_commands"
+                            ]
+                        ]
+                    },
+                    "tab": {
+                        "translation": [
+                            "switch tab",
+                            "alt tab"
+                        ]
+                    },
+                    "message": {
+                        "condition": [
+                            [
+                                "text_files",
+                                "text_preset"
+                            ]
+                        ],
+                        "translation": [
+                            "text",
+                            "message",
+                            "type"
+                        ]
+                    }
+                }
+            },
+            "prompts": {
+                "DISABLE": true
+            },
+            "notify": true
+        },
+        "perform_cmd": {
+            "keywords": {
+                "additional":{
+                    "ping": {
+                        "condition": [
+                            [
+                                "cmd_commands"
+                            ]
+                        ],
+                        "translation": [
+                            "connection",
+                            "ping"
+                        ]
+                    }
+                }
+            },
+            "prompts": {
+                "SILENCE": false
+            }
+        }
+    },
+    "ENTITY_DEFINITIONS": {
+        "crypto_action_price":{
+            "type": "gazetteer",
+            "values": [
+                "price"
+            ]
+        },
+        "maximum_values":{
+            "type": "gazetteer",
+            "values": [
+                "max",
+                "maximum"
+            ]
+        },
+        "minimum_values":{
+            "type": "gazetteer",
+            "values": [
+                "min",
+                "minimum"
+            ]
+        },
+        "input_commands":{
+            "type": "gazetteer",
+            "values": [
+                "type",
+                "input",
+                "press",
+                "perform"
+            ]
+        },
+        "crypto_action_trending":{
+            "type": "gazetteer",
+            "values": [
+                "trending",
+                "popular"
+            ]
+        },
+        "inquire_commands":{
+            "type": "gazetteer",
+            "values": [
+                "tell",
+                "what"
+            ]
+        },
+        "i_pronouns":{
+            "type": "gazetteer",
+            "values": [
+                "i",
+                "me"
+            ]
+        },
+        "he_pronouns":{
+            "type": "gazetteer",
+            "values": [
+                "he",
+                "him"
+            ]
+        },
+        "she_pronouns":{
+            "type": "gazetteer",
+            "values": [
+                "she",
+                "her"
+            ]
+        },
+        "you_pronouns":{
+            "type": "gazetteer",
+            "values": [
+                "you"
+            ]
+        },
+        "it_pronouns":{
+            "type": "gazetteer",
+            "values": [
+                "it"
+            ]
+        },
+        "they_pronouns":{
+            "type": "gazetteer",
+            "values": [
+                "they",
+                "them"
+            ]
+        },
+        "we_pronouns":{
+            "type": "gazetteer",
+            "values": [
+                "we",
+                "us"
+            ]
+        },
+        "ninjas_actions":{
+            "type": "gazetteer",
+            "values": [
+                "joke",
+                "bucket",
+                "to do",
+                "riddle",
+                "quote",
+                "fact"
+            ]
+        },
+        "questions":{
+            "type": "gazetteer",
+            "values": [
+                "love",
+                "life",
+                "future",
+                "think of"
+            ]
+        },
+        "light_section":{
+            "type": "regex",
+            "patterns": {
+                "9": "\\blights?\\b",
+                "10": "\\bback\\slights?\\b",
+                "11": "\\btable\\s+lights?\\b",
+                "12": "\\bred\\s+lights?\\b",
+                "ALL": "\\ball\\s+lights?\\b"
+            }
+        },
+        "text_preset":{
+            "type": "gazetteer",
+            "values": {
+                "OK": "ok",
+                "Indeed": "indeed",
+                "How are you?": "how",
+                "poem": "poem"
+            }
+        },
+        "text_files":{
+            "type": "gazetteer",
+            "values": {
+                "READ": {
+                    "source": "config.json",
+                    "section": "text_files",
+                    "type": "dict"
+                }
+            }
+        },
+        "video_files":{
+            "type": "gazetteer",
+            "values": {
+                "READ": {
+                    "source": "config.json",
+                    "section": "video_files",
+                    "type": "dict"
+                }
+            }
+        },
+        "audio_files":{
+            "type": "gazetteer",
+            "values": {
+                "READ": {
+                    "source": "config.json",
+                    "section": "audio_files",
+                    "type": "dict"
+                }
+            }
+        },
+        "city":{
+            "type": "gazetteer",
+            "values": {
+                "paris": "paris",
+                "london": "london",
+                "tehran": "tehran",
+                "new york": "new york",
+                "berlin": "berlin",
+                "tokyo": "tokyo",
+                "mashhad": "mashhad"
+            }
+        },
+        "cmd_commands": {
+            "type": "gazetteer",
+            "values": {
+                "ping google.com": "google",
+                "ping animegate.ir": "anime"
+            }
+        },
+        "crypto": {
+            "type": "gazetteer",
+            "values": {
+                "bitcoin": "cheese",
+                "solana": "solana",
+                "tron": "tron",
+                "ripple": "ripple",
+                "ethereum": "ethereum",
+                "litecoin": "litecoin",
+                "cardano": "cardano",
+                "dogecoin": "dogecoin"
+            }
+        },
+        "state_on": {
+            "type": "regex",
+            "patterns": [
+                "\\bturn(?:\\s+\\w+)*\\s+on(?:\\s+\\w+)*\\b",
+                "\\bactivate\\b",
+                "\\benable\\b"
+            ]
+        },
+        "state_auto": {
+            "type": "gazetteer",
+            "values": [
+                "auto",
+                "automatic"
+            ]
+        },
+        "temp_unit": {
+            "type": "gazetteer",
+            "values": [
+                "farenheit",
+                "celsius"
+            ]
+        },
+        "app_names": {
+            "type": "gazetteer",
+            "values": {
+                "READ": {
+                    "source": "config.json",
+                    "section": "applications",
+                    "type": "dict"
+                }
+            }
+        },
+        "continue_controls": {
+            "type": "gazetteer",
+            "values": [
+                "resume",
+                "play",
+                "start"
+            ]
+        },
+        "pause_controls": {
+            "type": "gazetteer",
+            "values": [
+                "stop",
+                "pause"
+            ]
+        },
+        "standby_controls": {
+            "type": "gazetteer",
+            "values": [
+                "stand by",
+                "sleep"
+            ]
+        },
+        "toggle_controls": {
+            "type": "gazetteer",
+            "values": [
+                "toggle"
+            ]
+        },
+        "next_controls": {
+            "type": "gazetteer",
+            "values": [
+                "next"
+            ]
+        },
+        "previous_controls": {
+            "type": "gazetteer",
+            "values": [
+                "previous"
+            ]
+        },
+        "volume_controls": {
+            "type": "gazetteer",
+            "values": [ 
+                "volume"
+            ]
+        },
+        "set_controls": {
+            "type": "regex",
+            "patterns": [ 
+                "\\b(set|put)(?:\\s+\\w+)*\\s+(to|on)(?:\\s+\\w+)*\\b"
+            ]
+        },
+        "launch_controls": {
+            "type": "gazetteer",
+            "values": [
+                "run",
+                "open",
+                "launch",
+                "start"
+            ]
+        },
+        "terminate_controls": {
+            "type": "regex",
+            "patterns": [
+                "\\b(turn|shut)(?:\\s+\\w+)*\\s+off(?:\\s+\\w+)*\\b",
+                "\\bshut(?:\\s+\\w+)*\\s+down(?:\\s+\\w+)*\\b",
+                "\\bstop\\b",
+                "\\bterminate\\b",
+                "\\bclose\\b",
+                "\\bdeactivate\\b",
+                "\\bdisable\\b"
+            ]
+        },
+        "reboot_controls": {
+            "type": "gazetteer",
+            "values": [
+                "restart",
+                "reboot",
+                "relaunch"
+            ]
+        },
+        "system_state_sleep": {
+            "type": "gazetteer",
+            "values": [
+                "sleep"
+            ]
+        },
+        "system_state_hibernate": {
+            "type": "gazetteer",
+            "values": [
+                "hibernate"
+            ]
+        },
+        "system_state_lock": {
+            "type": "gazetteer",
+            "values": [
+                "lock",
+                "secure"
+            ]
+        },
+        "status_controls": {
+            "type": "gazetteer",
+            "values": [
+                "status",
+                "situation",
+                "info"
+            ]
+        },
+        "report_controls": {
+            "type": "gazetteer",
+            "values": [
+                "summarize",
+                "read"
+            ]
+        },
+        "take_controls": {
+            "type": "gazetteer",
+            "values": [
+                "take"
+            ]
+        },
+        "number": {
+            "type": "regex",
+            "patterns": [
+                "\\b(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|fourty|fifty|sixty|seventy|eighty|ninety|hundred|\\d+)\\b"
+            ]
+        },
+        "time_unit": {
+            "type": "regex",
+            "patterns": {
+                "1": "\\b(?:in|for|at)?\\s*seconds?\\b",
+                "60": "\\b(?:in|for|at)?\\s*minutes?\\b",
+                "3600": "\\b(?:in|for|at)?\\s*hours?\\b",
+                "86400": "\\b(?:in|for|at)?\\s*days?\\b"
+            }
+        }
+    },
+    "GENERAL_PROMPTS": {
+        "let me see": [
+            "what",
+            "how"
+        ],
+        "let me check": [
+            "what",
+            "how"
+        ],
+        "I'll search": [
+            "what",
+            "how"
+        ],
+        "of course": [
+            "could",
+            "can"
+        ],
+        "yes": [
+            "could",
+            "can"
+        ],
+        "sure": [
+            "could",
+            "can"
+        ],
+        "on it": [
+            "could",
+            "can"
+        ],
+        "ok": null,
+        "alright": null,
+        "right away": null,
+        "count it done": null
+    }
+}

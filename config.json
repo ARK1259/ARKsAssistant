@@ -1,0 +1,93 @@
+{
+    "system": {
+        "language": "",
+        "temperature_unit": "",
+        "force_local_modules": false,
+        "modules_path": "",
+        "custom_commands_file": "",
+        "custom_langs_file": "",
+        "keep_logs_days": 7,
+        "private_mode": false
+    },
+    "comprehension": {
+        "use_wake_word": true,
+        "wake_notification": true,
+        "wake_timeout": 10,
+        "wake_word": "",
+        "repeat_prompts": false,
+        "print_command": false
+    },
+    "vosk": {
+        "disable_vosk": false,
+        "vosk-fa": "",
+        "vosk-en": "",
+        "vocabulary": true,
+        "refresh": false,
+        "refresh_rate": 60,
+        "log_level": -1,
+        "print_input": false
+    },
+    "tts": {
+        "disable_tts": false,
+        "force_offline_voice": true,
+        "online_voice": 5,
+        "offline_voice": 1,
+        "non_english_voice": 1,
+        "volume": 1,
+        "speech_rate": 170
+    },
+    "behavior": {
+        "force_offline": false,
+        "print_internet_connectivity": true,
+        "ask_timeout": 5,
+        "ask_repetition": 3
+    },
+    "arduino": {
+        "connect": false,
+        "port": "",
+        "retry_count": 3,
+        "reconnect_on_commands": true,
+        "ping_connectivity": true
+    },
+    "server": {
+        "open_tcp": false,
+        "host": "0.0.0.0",
+        "port": 11446
+    },
+    "sound_devices": {
+        "input_device": "",
+        "output_device": "",
+        "input_sample_rate": 16000
+    },
+    "apis": {
+        "weatherapi": "",
+        "ninjasapi": ""
+    },
+    "system_sounds": {
+        "shutdown": "",
+        "startup": "",
+        "ringtone": "",
+        "notification": "",
+        "deactivate": "",
+        "activate": ""
+    },
+    "startup": {
+        "startup_sound": true,
+        "welcome": true,
+        "welcome_message": ""
+    },
+    "shutdown": {
+        "shutdown_sound": true,
+        "good_bye": true,
+        "good_bye_message": ""
+    },
+    "phrases": {
+        "confirm": "",
+        "decline": ""
+    },
+    "text_files": {},
+    "video_files": {},
+    "audio_files": {},
+    "applications": {},
+    "timers": []
+}
